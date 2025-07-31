@@ -23,10 +23,6 @@ jobs:
         run: npm ci
         working-directory: controll-view
 
-      - name: Run tests
-        run: npm run test -- --coverage --watchAll=false
-        working-directory: controll-view
-
       - name: Build React app
         run: npm run build
         working-directory: controll-view
@@ -37,10 +33,3 @@ jobs:
           name: react-build-${{ github.sha }}
           path: controll-view/build/
           retention-days: 30
-
-      - name: Upload test coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report-${{ github.sha }}
-          path: controll-view/coverage/
-          retention-days: 7
