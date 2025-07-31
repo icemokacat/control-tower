@@ -33,3 +33,15 @@ jobs:
           name: react-build-${{ github.sha }}
           path: controll-view/build/
           retention-days: 30
+
+      - name: Notify Jenkins on success
+        if: success() && github.ref == 'refs/heads/release'
+        run: |
+          curl -X POST "${{ secrets.JENKINS_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "repository": "${{ github.repository }}",
+              "commit": "${{ github.sha }}",
+              "artifact_name": "react-build-${{ github.sha }}",
+              "run_id": "${{ github.run_id }}"
+            }'
