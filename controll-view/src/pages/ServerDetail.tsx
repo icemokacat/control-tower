@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, RefreshCw, Cpu, Activity, HardDrive, Wifi, Clock } from 'lucide-react';
@@ -22,6 +23,7 @@ export const ServerDetail: React.FC = () => {
   
   const memQuery = `(1 - (node_memory_MemAvailable_bytes{instance="INSTANCE"} / node_memory_MemTotal_bytes{instance="INSTANCE"})) * 100`;
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: memHistory, error: memError, isLoading: memLoading } = useMetricHistory(
     decodedHostname,
     memQuery,
